@@ -1,0 +1,19 @@
+{
+  "name": "hapi-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.18.1",
+    "glob": "^7.1.2",
+    "hapi": "^17.2.0",
+    "lodash": "^4.17.5"
+  }
+}
