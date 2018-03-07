@@ -15,4 +15,13 @@ module.exports = [{
 			payload: validation.create
 		}
 	}
+}, {
+	method: 'post',
+	path: '/user/sign_in',
+	handler: controller.sign_in,
+	config:{
+		validate: {
+			payload: validation.signin
+		}
+	}
 }];
