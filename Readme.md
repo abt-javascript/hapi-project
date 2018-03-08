@@ -2,5 +2,6 @@
 - install node.js
 - install docker
 - instal convox
-- clone repo && cd <repo name>
+- clone repo && cd repo name
+- duplicate .env.example to .env
 - convox start

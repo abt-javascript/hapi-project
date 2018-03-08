@@ -21,3 +21,4 @@ services:
       - mongodb-hapi
     environment:
       - DATABASE_URL
+      - SECRET

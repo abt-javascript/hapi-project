@@ -10,7 +10,8 @@ module.exports = [{
 	method: 'post',
 	path: '/user/sign_up',
 	handler: controller.sign_up,
-	config:{
+	config: {
+		auth:false,
 		validate: {
 			payload: validation.create
 		}
@@ -20,6 +21,7 @@ module.exports = [{
 	path: '/user/sign_in',
 	handler: controller.sign_in,
 	config:{
+		auth: false,
 		validate: {
 			payload: validation.signin
 		}
