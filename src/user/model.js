@@ -10,7 +10,7 @@ let schema = new Schema({
     type:'string',
     unique:true
   },
-  password: 'string',
+  password: {type:'string'},
   label:'string',
   mobile: {
     type:'string',

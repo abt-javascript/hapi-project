@@ -5,10 +5,10 @@ const generateToken = require('../../services/token.js');
 const signin = require('../../services/sign-in.js');
 const generateHash = require('../../services/hash.js');
 
-var user = {
+let user = {
 	list: async function(request, h) {
 		const user = await new promise((resolve, reject) => {
-			userModel.find().exec((err, users) => {
+			userModel.find().select("-password").exec((err, users) => {
 				if(!err){
 					resolve(users);
 				}
@@ -76,7 +76,6 @@ var user = {
 					}).catch(err => {
 						reject(err);
 					});
-
 				}
 			});
 		});

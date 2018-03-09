@@ -2,15 +2,29 @@
 
 const promise = require('bluebird');
 const hapiAuthJwt = require('hapi-auth-jwt2');
-var people = { // our "users database"
-    1: {
-      id: 1,
-      name: 'Anthony Valid User'
-    }
-};
+const userModel = require('../src/user/model');
+const moment = require('moment');
 
 const validate = async function(decode, request) {
-  return { isValid: true };
+  if(moment().unix() > decode.expire){
+    return {isValid:false, response:'session expire'}
+  }
+
+  const status = await new promise((resolve, reject) => {
+    userModel.findOne({username:decode.username, mobile:decode.mobile}, (err, user) => {
+      if(err) {
+        resolve({isValid:false});
+      }
+
+      if(!user) {
+        resolve({isValid:false});
+      }
+
+      resolve({isValid:true});
+    });
+  });
+
+  return status
 }
 
 const authJwt  = async function authJwtConfig (server) {
@@ -18,10 +32,7 @@ const authJwt  = async function authJwtConfig (server) {
 
   await server.auth.strategy('jwt', 'jwt', {
     key: process.env.SECRET,
-    validate: async function (decode, request){
-      var aba = {isValid:true};
-      return aba;
-    },
+    validate: validate,
     verifyOptions: { algorithms: [ 'HS256' ] }
   });
 
